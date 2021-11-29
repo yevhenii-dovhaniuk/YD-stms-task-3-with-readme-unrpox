@@ -38,3 +38,10 @@ export class MyEntityComponent {
 ## What's under the hood
 `createFavoritesAdapter` return action and corresponding reducer that can handle this action.
 The reducer function uses entityAdapter to replace the data row "in place".
+
+## Search
+- The search is case-insensitive on every page.
+
+- The Favorites page's search can search both entities.
+
+- The search can only operate "string" fields
