@@ -64,8 +64,12 @@ import {
   faRocket,
   faPowerOff,
   faUserCircle,
-  faPlayCircle
-} from "@fortawesome/free-solid-svg-icons";
+  faPlayCircle, faStar, faStarHalf, faSpinner
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faStar as farStar
+} from '@fortawesome/free-regular-svg-icons';
+
 import {
   faGithub,
   faMediumM,
@@ -186,7 +190,11 @@ export class CoreModule {
       faMediumM,
       faTwitter,
       faInstagram,
-      faYoutube
+      faYoutube,
+      faStar,
+      faSpinner,
+      farStar,
+      faStarHalf
     );
   }
 }

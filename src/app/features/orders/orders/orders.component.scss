@@ -38,3 +38,18 @@ mat-card {
     left: 5px;
   }
 }
+
+.container {
+  .content {
+    margin-top: 14px;
+
+    table {
+      width: 100%;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+}

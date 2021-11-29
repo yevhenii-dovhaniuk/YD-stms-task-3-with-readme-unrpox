@@ -1,8 +1,8 @@
 import { Component, DebugElement } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from '../../../shared.module';
 
-import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'st-host-for-test',

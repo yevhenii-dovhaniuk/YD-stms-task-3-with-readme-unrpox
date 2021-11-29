@@ -1,10 +1,11 @@
 {
   "stms.title.long": "LabOS test task",
   "stms.title.short": "LabOS",
-  
+
   "stms.menu.patients": "Patients",
   "stms.menu.examples": "Examples",
   "stms.menu.orders": "Orders",
+  "stms.menu.favorites": "Favorites",
   "stms.menu.login": "Sign in",
   "stms.menu.logout": "Logout",
   "stms.menu.settings": "Settings",
@@ -30,5 +31,26 @@
   "stms.patients.get-patients": "Get patients",
 
   "stms.orders.title": "Orders",
-  "stms.orders.get-orders": "Get orders"
+  "stms.orders.get-orders": "Get orders",
+
+  "stms.favorites.title": "Favorites",
+  "smts.columns.id": "ID",
+  "smts.columns.favorite": "Fav",
+  "stms.columns.isRejected": "Is Rejected",
+  "stms.columns.onHold": "On Hold",
+  "stms.columns.orderName": "Order Name",
+  "stms.columns.orderNum": "Order Num",
+  "stms.columns.flags": "Flags",
+  "stms.columns.birthYear": "Birth Year",
+  "stms.columns.defaultFormattedId":"Default Formatted Id",
+  "stms.columns.defaultId": "Default Id",
+  "stms.columns.firstName":"First Name",
+  "stms.columns.fullName": "Full Name",
+  "stms.columns.inactive":"Inactive",
+  "stms.columns.lastName": "Last Name",
+  "stms.columns.age": "Age",
+
+  "stms.input.search": "Search",
+
+  "stms.messages.nothing-in-favorites": "You haven't added anything to favorites for this entity. Go to {{entity}} and add something"
 }

@@ -1,0 +1,43 @@
+<div class="container">
+    <div rtl>
+        <h1 class="main-heading">{{ 'stms.favorites.title' | translate }}</h1>
+
+        <input matInput type="text" [placeholder]="'stms.input.search' | translate" aria-label="Search" [formControl]="searchControl"/>
+    </div>
+
+    <div class="content">
+        <ng-container *ngFor="let entityData of entitiesWithFavorites$ | async">
+            <h2 class="secondary-heading">{{ entityData.favoritesEntityTranslationKey | translate }}</h2>
+            <table *ngIf="entityData.entities && entityData.columnDefinitions.length && entityData.displayedColumnDefinitions.length else nothingInFavorites"
+                   mat-table [dataSource]="entityData.filteredTableData" class="mat-elevation-z8">
+                <ng-container *ngFor="let colDef of entityData.columnDefinitions">
+                    <ng-container [matColumnDef]="colDef.field">
+                        <th mat-header-cell *matHeaderCellDef> {{colDef.name | translate}} </th>
+                        <ng-container *ngIf="!colDef.addsToFavorites">
+                            <td mat-cell *matCellDef="let element"> {{element[colDef.field]}} </td>
+                        </ng-container>
+                        <ng-container *ngIf="colDef.addsToFavorites">
+                            <td mat-cell *matCellDef="let element">
+                                <fa-icon *ngIf="element[colDef.field]" [icon]="'star'"></fa-icon>
+                                <fa-icon *ngIf="!element[colDef.field]" [icon]="['far', 'star']"></fa-icon>
+                            </td>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+
+                <ng-container>
+                    <tr mat-header-row *matHeaderRowDef="entityData.displayedColumnDefinitions"></tr>
+                    <tr mat-row *matRowDef="let row; columns: entityData.displayedColumnDefinitions;"></tr>
+                </ng-container>
+            </table>
+
+            <ng-template #nothingInFavorites>
+                <div class="nothing-in-favorites">
+                    {{'stms.messages.nothing-in-favorites' | translate: {entity: entityData.favoritesEntityTranslationKey | translate} }}
+                </div>
+            </ng-template>
+        </ng-container>
+    </div>
+</div>
+
+

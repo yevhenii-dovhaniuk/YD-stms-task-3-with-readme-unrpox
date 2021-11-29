@@ -23,6 +23,11 @@ const routes: Routes = [
       import("./features/settings/settings.module").then(m => m.SettingsModule)
   },
   {
+    path: "favorites",
+    loadChildren: () =>
+        import("./features/favorites/favorites.module").then(m => m.FavoritesModule)
+  },
+  {
     path: "**",
     redirectTo: "patients"
   }

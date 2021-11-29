@@ -1,13 +1,47 @@
 <div class="container">
-  <div rtl>
-    <h1 class="main-heading">{{ 'stms.patients.title' | translate }}</h1>
-    <div class="actions">
-      <a mat-raised-button class="actions-main" color="primary">
-        {{ 'stms.patients.get-patients' | translate }}
-      </a>
-      <!--
-        Endpoint to fetch data: https://api.mocki.io/v2/51597ef3
-       -->
+    <div rtl>
+        <h1 class="main-heading">{{ 'stms.patients.title' | translate }}</h1>
+        <div class="actions">
+            <a mat-raised-button
+               class="actions-main"
+               color="primary"
+               (click)="fetchPatients()"
+            >
+                {{ 'stms.patients.get-patients' | translate }}
+            </a>
+
+            <input matInput type="text" [placeholder]="'stms.input.search' | translate" aria-label="Search" [formControl]="searchControl"/>
+        </div>
+
+        <div class="content">
+            <table *ngIf="!(arePatientsLoading$ | async) else loading"
+                   mat-table [dataSource]="filteredPatients$" class="mat-elevation-z8">
+                <ng-container *ngIf="patientColumnDefinitions$ | async as colDefs">
+                    <ng-container *ngFor="let colDef of colDefs">
+                        <ng-container [matColumnDef]="colDef.field">
+                            <th mat-header-cell *matHeaderCellDef> {{colDef.name | translate}} </th>
+                            <ng-container *ngIf="!colDef.addsToFavorites">
+                                <td mat-cell *matCellDef="let element"> {{element[colDef.field]}} </td>
+                            </ng-container>
+                            <ng-container *ngIf="colDef.addsToFavorites">
+                                <td (click)="toggleFavouriteState(element)" mat-cell *matCellDef="let element">
+                                    <fa-icon *ngIf="element[colDef.field]" [icon]="'star'"></fa-icon>
+                                    <fa-icon *ngIf="!element[colDef.field]" [icon]="['far', 'star']"></fa-icon>
+                                </td>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf="displayedPatientColumnDefinitions$ | async as displayedColDefs">
+                        <tr mat-header-row *matHeaderRowDef="displayedColDefs"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColDefs;"></tr>
+                    </ng-container>
+                </ng-container>
+            </table>
+        </div>
     </div>
-  </div>
 </div>
+
+<ng-template #loading>
+    <fa-icon icon="spinner" [spin]="true"></fa-icon>
+</ng-template>
